@@ -8,8 +8,7 @@ import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class testBox {
 
@@ -22,19 +21,24 @@ public class testBox {
     @Test
     void useYourBrainTest(){
         open("/automation-practice-form");
+
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
+
         $("[id=firstName]").setValue("David");
         $("[id=lastName]").setValue("Kuznetsov");
         $("[id=userEmail]").setValue("DavidKuznetsov@gmail.com");
         $("#genterWrapper").$(byText("Male")).click();
-        $("[id=userNumber]").setValue("987654321");
+        $("[id=userNumber]").setValue("9876543211");
         $("#dateOfBirthInput").click();
         $("[id=dateOfBirthInput]").click();
         $(".react-datepicker__month-select").selectOption("July");
         $(".react-datepicker__year-select").selectOption("1987");
-        $("[aria-label = 'Choose Thursday, July 9th, 1987']").click()
-        $("#subjectsInput").setValue("Literature").pressEnter();
+        $(byText("9")).click();
+        $("#subjectsInput").sendKeys("Maths");
+        $("#subjectsInput").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFile (new File("src/test/java/resources/Greenshot.png"));
+        $("#uploadPicture").uploadFile (new File("src/test/resources/Greenshot.png"));
         $("#currentAddress-wrapper").click();
         $("#currentAddress").val("Gagarina 115");
         $("#state").scrollTo().click();
@@ -45,9 +49,9 @@ public class testBox {
 
         $(".modal-content").shouldHave(text("Thanks for submitting the form"),
                 text("David"),
-                text("DavidKuznetsov@gmail.com"), text("Male"), text("987654321"), text("Gagarina 115"),
-                text("09 July,1987"), text("Literature"), text("Sports"),
-                text("Screenshot_2.png"), text("Gagarina 115"), text("NCR Delhi"));
+                text("DavidKuznetsov@gmail.com"), text("Male"), text("9876543211"),
+                text("Gagarina 115"), text("09 July,1987"), text("Maths"),
+                text("Sports"), text("Greenshot.png"), text("NCR Delhi"));
     }
 
 
