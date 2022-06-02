@@ -28,14 +28,13 @@ public class testBox {
         $("#genterWrapper").$(byText("Male")).click();
         $("[id=userNumber]").setValue("987654321");
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
+        $("[id=dateOfBirthInput]").click();
         $(".react-datepicker__month-select").selectOption("July");
-        $(".react-datepicker__year-select").click();
         $(".react-datepicker__year-select").selectOption("1987");
-        $("react-datepicker__day react-datepicker__day--009 react-datepicker__day--selected react-datepicker__day--weekend").click();
+        $("[aria-label = 'Choose Thursday, July 9th, 1987']").click()
         $("#subjectsInput").setValue("Literature").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFile (new File("src/test/java/resources/Screenshot_2.png"));
+        $("#uploadPicture").uploadFile (new File("src/test/java/resources/Greenshot.png"));
         $("#currentAddress-wrapper").click();
         $("#currentAddress").val("Gagarina 115");
         $("#state").scrollTo().click();
