@@ -45,8 +45,8 @@ public class testBox {
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
 
-        $(".modal-content").shouldHave(text("Thanks for submitting the form"),
-                text("David"),
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("David"),
                 text("DavidKuznetsov@gmail.com"), text("Male"), text("9876543211"),
                 text("Gagarina 115"), text("09 July,1987"), text("Maths"),
                 text("Sports"), text("Greenshot.png"), text("NCR Delhi"));
