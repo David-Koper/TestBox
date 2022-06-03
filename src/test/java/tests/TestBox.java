@@ -19,7 +19,7 @@ public class TestBox {
     }
 
     @Test
-    void useYourBrainTest(){
+    void useYourBrainTest() {
         open("/automation-practice-form");
 
         executeJavaScript("$('footer').remove()");
@@ -38,7 +38,7 @@ public class TestBox {
         $("#subjectsInput").sendKeys("Maths");
         $("#subjectsInput").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath ("Greenshot.png");
+        $("#uploadPicture").uploadFromClasspath("Greenshot.png");
         $("#currentAddress-wrapper").click();
         $("#currentAddress").val("Gagarina 115");
         $("#state").scrollTo().click();
@@ -48,7 +48,7 @@ public class TestBox {
         $("#submit").click();
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $$(".table-responsive tr").filterBy(text("Student Name")).shouldBe(texts("David"));
+        $$(".table-responsive tr").filterBy(text("Student Name")).shouldBe(texts("David Kuznetsov"));
         $$(".table-responsive tr").filterBy(text("Student Email")).shouldBe(texts("DavidKuznetsov@gmail.com"));
         $$(".table-responsive tr").filterBy(text("Gender")).shouldBe(texts("Male"));
         $$(".table-responsive tr").filterBy(text("Mobile")).shouldBe(texts("9876543211"));
@@ -58,5 +58,5 @@ public class TestBox {
         $$(".table-responsive tr").filterBy(text("Picture")).shouldBe(texts("Greenshot.png"));
         $$(".table-responsive tr").filterBy(text("Address")).shouldBe(texts("Gagarina 115"));
         $$(".table-responsive tr").filterBy(text("State and City")).shouldBe(texts("NCR Delhi"));
-
+    }
 }
