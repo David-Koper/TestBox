@@ -4,8 +4,6 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -25,20 +23,20 @@ public class testBox {
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
 
-        $("[id=firstName]").setValue("David");
-        $("[id=lastName]").setValue("Kuznetsov");
-        $("[id=userEmail]").setValue("DavidKuznetsov@gmail.com");
+        $("#firstName").setValue("David");
+        $("#lastName").setValue("Kuznetsov");
+        $("#userEmail").setValue("DavidKuznetsov@gmail.com");
         $("#genterWrapper").$(byText("Male")).click();
-        $("[id=userNumber]").setValue("9876543211");
+        $("#userNumber").setValue("9876543211");
         $("#dateOfBirthInput").click();
-        $("[id=dateOfBirthInput]").click();
+        $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("July");
         $(".react-datepicker__year-select").selectOption("1987");
         $(byText("9")).click();
         $("#subjectsInput").sendKeys("Maths");
         $("#subjectsInput").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFile (new File("src/test/resources/Greenshot.png"));
+        $("#uploadPicture").uploadFromClasspath ("Greenshot.png");
         $("#currentAddress-wrapper").click();
         $("#currentAddress").val("Gagarina 115");
         $("#state").scrollTo().click();
