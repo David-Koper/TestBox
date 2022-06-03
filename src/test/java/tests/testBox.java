@@ -1,14 +1,16 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class testBox {
+public class TestBox {
 
     @BeforeAll
     static void beforeAll() {
@@ -46,11 +48,15 @@ public class testBox {
         $("#submit").click();
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("David"),
-                text("DavidKuznetsov@gmail.com"), text("Male"), text("9876543211"),
-                text("Gagarina 115"), text("09 July,1987"), text("Maths"),
-                text("Sports"), text("Greenshot.png"), text("NCR Delhi"));
-    }
-
+        $$(".table-responsive tr").filterBy(text("Student Name")).shouldBe(texts("David"));
+        $$(".table-responsive tr").filterBy(text("Student Email")).shouldBe(texts("DavidKuznetsov@gmail.com"));
+        $$(".table-responsive tr").filterBy(text("Gender")).shouldBe(texts("Male"));
+        $$(".table-responsive tr").filterBy(text("Mobile")).shouldBe(texts("9876543211"));
+        $$(".table-responsive tr").filterBy(text("Date of Birth")).shouldBe(texts("09 July,1987"));
+        $$(".table-responsive tr").filterBy(text("Subjects")).shouldBe(texts("Maths"));
+        $$(".table-responsive tr").filterBy(text("Hobbies")).shouldBe(texts("Sports"));
+        $$(".table-responsive tr").filterBy(text("Picture")).shouldBe(texts("Greenshot.png"));
+        $$(".table-responsive tr").filterBy(text("Address")).shouldBe(texts("Gagarina 115"));
+        $$(".table-responsive tr").filterBy(text("State and City")).shouldBe(texts("NCR Delhi"));
 
 }
