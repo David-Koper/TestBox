@@ -2,54 +2,67 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import com.github.javafaker.Faker;
+import com.github.javafaker.PhoneNumber;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 import pages.components.ResultsTableComponent;
 
+import java.security.Provider;
+
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-
+import utils.RandomGenerator;
 public class TestBox extends TestBase {
 
-
+    Faker faker = new Faker();
+    String firstName = faker.address().firstName();
+    String lastName = faker.address().lastName();
+    String UserNumber = String.valueOf(faker.number().randomNumber(10, true));
+    String email = faker.internet().emailAddress();
+    String link = "src/test/resources/Greenshot.png";
+    String currentAddress = faker.address().fullAddress();;
+    String Year = String.valueOf(faker.number().numberBetween(1900, 2022));
+    String Month = RandomGenerator.randomMonths();
+    String gender = RandomGenerator.randomGender();
+            //faker.demographic().sex();
+    String Subject = RandomGenerator.randomSubject();
+    String hobby = RandomGenerator.randomHobby();
+    String Day = String.valueOf(faker.number().numberBetween(1,28));
     @Test
     void useYourBrainTest() {
 
-        String firstName = "David";
-        String lastName = "Kuznetsov";
-        String UserNumber = "9876543211";
-        String email = "DavidKuznetsov@gmail.com";
-        String link = "src/test/resources/Greenshot.png";
-        String address = "Gagarina 115";
+
 
         registrationFormPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(email)
-                .setGender("Male")
-                .setMaths("M")
-                .setHobbie("Sports")
-                .setDateOfBirth("9", "July", "1987")
+                .setGender(gender)
+                .setSubjects(Subject)
+                .setHobby(hobby)
+                .setDateOfBirth(Day, Month, Year)
                 .setUserNumber(UserNumber)
-                .uploadPicture(link)
-                .setAddress(address)
+                .uploadPicture("src/test/resources/Greenshot.png")
+                .setAddress(currentAddress)
                 .scrollToClick()
                 .setStateAndCity("NCR", "Delhi")
                 .sendForm();
 
 
-        registrationFormPage.checkResult("Student Name", firstName + " " + lastName)
+        registrationFormPage
+                .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Student Email", email)
-                .checkResult("Gender", "Male")
+                .checkResult("Gender", gender)
                 .checkResult("Mobile", UserNumber)
-                .checkResult("Date of Birth", "09 July,1987")
-                .checkResult("Subjects", "Maths")
-                .checkResult("Hobbies", "Sports")
+                .checkResult("Date of Birth", Day+" "+Month+","+Year)
+                .checkResult("Subjects", Subject)
+                .checkResult("Hobbies", hobby)
                 .checkResult("Picture", "Greenshot.png")
-                .checkResult("Address", address)
+                .checkResult("Address", currentAddress)
                 .checkResult("State and City", "NCR Delhi");
     }
 }
