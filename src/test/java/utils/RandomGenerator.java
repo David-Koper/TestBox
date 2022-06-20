@@ -28,6 +28,13 @@ public class RandomGenerator {public static String randomGender() {
         String[] subject = new String[]{"English", "German", "Biology",
                 "Hindi", "Chemistry", "Civics", "Maths"};
         Random random = new Random();
-        return subject [random.nextInt(subject.length)];
+        return subject[random.nextInt(subject.length)];
     }
+    //public static String randomstate() {
+
+          //  String[] state = new String[]{"NCR", "Uttar Pradesh", "Haryana",
+                    //"Rajasthan"};
+           // Random random = new Random();
+           // return state [random.nextInt(state.length)];
+
 }

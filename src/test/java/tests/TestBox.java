@@ -16,53 +16,43 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import utils.RandomGenerator;
+
+
 public class TestBox extends TestBase {
 
-    Faker faker = new Faker();
-    String firstName = faker.address().firstName();
-    String lastName = faker.address().lastName();
-    String UserNumber = String.valueOf(faker.number().randomNumber(10, true));
-    String email = faker.internet().emailAddress();
-    String link = "src/test/resources/Greenshot.png";
-    String currentAddress = faker.address().fullAddress();;
-    String Year = String.valueOf(faker.number().numberBetween(1900, 2022));
-    String Month = RandomGenerator.randomMonths();
-    String gender = RandomGenerator.randomGender();
-            //faker.demographic().sex();
-    String Subject = RandomGenerator.randomSubject();
-    String hobby = RandomGenerator.randomHobby();
-    String Day = String.valueOf(faker.number().numberBetween(1,28));
+
+
     @Test
     void useYourBrainTest() {
 
 
 
         registrationFormPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(email)
-                .setGender(gender)
-                .setSubjects(Subject)
-                .setHobby(hobby)
-                .setDateOfBirth(Day, Month, Year)
-                .setUserNumber(UserNumber)
-                .uploadPicture("src/test/resources/Greenshot.png")
-                .setAddress(currentAddress)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setUserEmail(testData.email)
+                .setGender(testData.gender)
+                .setSubjects(testData.subject)
+                .setHobby(testData.hobby)
+                .setDateOfBirth(testData.day, testData.month, testData.year)
+                .setUserNumber(testData.userNumber)
+                .uploadPicture(testData.link)
+                .setAddress(testData.currentAddress)
                 .scrollToClick()
-                .setStateAndCity("NCR", "Delhi")
+                .setStateAndCity(testData.state, testData.city)
                 .sendForm();
 
 
         registrationFormPage
-                .checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Student Email", email)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", UserNumber)
-                .checkResult("Date of Birth", Day+" "+Month+","+Year)
-                .checkResult("Subjects", Subject)
-                .checkResult("Hobbies", hobby)
-                .checkResult("Picture", "Greenshot.png")
-                .checkResult("Address", currentAddress)
-                .checkResult("State and City", "NCR Delhi");
+                .checkResult("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResult("Student Email", testData.email)
+                .checkResult("Gender", testData.gender)
+                .checkResult("Mobile", testData.userNumber)
+                .checkResult("Date of Birth", testData.day+" "+testData.month+","+testData.year)
+                .checkResult("Subjects", testData.subject)
+                .checkResult("Hobbies", testData.hobby)
+                .checkResult("Picture", testData.link)
+                .checkResult("Address", testData.currentAddress)
+                .checkResult("State and City", testData.state+" "+testData.city);
     }
 }

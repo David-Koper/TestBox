@@ -4,7 +4,7 @@ import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.ResultsTableComponent;
-import com.github.javafaker.Faker;
+
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
@@ -15,7 +15,6 @@ public class RegistrationFormPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
     ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
-
 
     SelenideElement firstNameInput = $("#firstName");
     SelenideElement lastNameInput = $("#lastName");
@@ -68,7 +67,7 @@ public class RegistrationFormPage {
 
     public RegistrationFormPage setDateOfBirth(String day, String month, String year) {
         setDateOfBirth.click();
-        calendarComponent.setDate(day, month, year);
+        calendarComponent.setDate(Integer.parseInt(day), month, year);
 
         return this;
     }
