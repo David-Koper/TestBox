@@ -33,7 +33,7 @@ public class TestBox extends TestBase {
                 .setUserNumber(testData.userNumber)
                 .uploadPicture(testData.link)
                 .setAddress(testData.currentAddress)
-                .scrollToClick()
+                //.scrollToClick()
                 .setStateAndCity(testData.state, testData.city)
                 .sendForm();
 
