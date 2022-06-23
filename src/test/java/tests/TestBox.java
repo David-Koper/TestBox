@@ -19,13 +19,8 @@ import utils.RandomGenerator;
 
 
 public class TestBox extends TestBase {
-
-
-
     @Test
     void useYourBrainTest() {
-
-
 
         registrationFormPage.openPage()
                 .setFirstName(testData.firstName)
@@ -41,7 +36,6 @@ public class TestBox extends TestBase {
                 .scrollToClick()
                 .setStateAndCity(testData.state, testData.city)
                 .sendForm();
-
 
         registrationFormPage
                 .checkResult("Student Name", testData.firstName + " " + testData.lastName)
