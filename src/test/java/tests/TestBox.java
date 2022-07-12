@@ -15,13 +15,15 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
+
 import utils.RandomGenerator;
 
 
 public class TestBox extends TestBase {
     @Test
     void useYourBrainTest() {
-
+        step("Filling in user data", () -> {
         registrationFormPage.openPage()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
@@ -36,7 +38,9 @@ public class TestBox extends TestBase {
                 //.scrollToClick()
                 .setStateAndCity(testData.state, testData.city)
                 .sendForm();
+        });
 
+        step("Checking the results", () -> {
         registrationFormPage
                 .checkResult("Student Name", testData.firstName + " " + testData.lastName)
                 .checkResult("Student Email", testData.email)
@@ -48,5 +52,6 @@ public class TestBox extends TestBase {
                 .checkResult("Picture", testData.link)
                 .checkResult("Address", testData.currentAddress)
                 .checkResult("State and City", testData.state+" "+testData.city);
+        });
     }
 }
