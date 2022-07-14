@@ -34,7 +34,7 @@ public class TestBase {
         Configuration.browserVersion = System.getProperty("version");
         Configuration.browserSize = System.getProperty("browserSize");
         String remoteDriverUrl = System.getProperty("remoteDriverUrl");
-        Configuration.remote = String.format("https://%s:%s@selenoid.autotests.cloud/wd/hub", config.login(), config.password());//, remoteDriverUrl);
+        Configuration.remote = String.format("https://user1:1234@selenoid.autotests.cloud/wd/hub");//, config.login(), config.password());//, remoteDriverUrl);
     }
     @AfterEach
     void addAttachments() {
