@@ -29,12 +29,12 @@ public class TestBase {
         capabilities.setCapability("enableVideo", true);
 
         //Configuration.browserCapabilities = capabilities;
-        Configuration.baseUrl = "https://demoqa.com"; //config.baseUrl();
+        Configuration.baseUrl = config.baseUrl(); //"https://demoqa.com";
         Configuration.browser = System.getProperty("browser");
         Configuration.browserVersion = System.getProperty("version");
         Configuration.browserSize = System.getProperty("browserSize");
         String remoteDriverUrl = System.getProperty("remoteDriverUrl");
-        Configuration.remote = String.format("https://user1:1234@selenoid.autotests.cloud/wd/hub");//, config.login(), config.password(), remoteDriverUrl);
+        Configuration.remote = String.format("https://%s:%s@selenoid.autotests.cloud/wd/hub", config.login(), config.password());//, remoteDriverUrl);
     }
     @AfterEach
     void addAttachments() {
