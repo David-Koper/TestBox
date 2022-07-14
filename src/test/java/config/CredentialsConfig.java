@@ -15,4 +15,6 @@ public interface CredentialsConfig extends Config {
 
     String password();
 
+    String remoteDriverUrl();
+
 }
