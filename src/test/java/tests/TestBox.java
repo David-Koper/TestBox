@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import com.github.javafaker.PhoneNumber;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 import pages.components.ResultsTableComponent;
@@ -19,7 +20,7 @@ import static io.qameta.allure.Allure.step;
 
 import utils.RandomGenerator;
 
-
+@Tag("demoQA_tests")
 public class TestBox extends TestBase {
     @Test
     void useYourBrainTest() {

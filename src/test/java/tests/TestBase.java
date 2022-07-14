@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import config.CredentialsConfig;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -13,28 +14,25 @@ import pages.RegistrationFormPage;
 public class TestBase {
 
     TestData testData = new TestData();
-
+    //public static CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
 
     @BeforeAll
-    static void setUp() {
+    static void beforeAll() {
+
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
 
-        String browser = System.getProperty("browser", "chrome");
-        String version = System.getProperty("version", "101");
-        String browserSize = System.getProperty("browserSize", "1920x1080");
-
-
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = browserSize;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        Configuration.browserVersion = version;
-        Configuration.browser = browser;
+        Configuration.browser = System.getProperty("browser");
+        Configuration.browserVersion = System.getProperty("version");
+        Configuration.browserSize = System.getProperty("browserSize");
+        String remoteDriverUrl = System.getProperty("remoteDriverUrl");
     }
     @AfterEach
     void addAttachments() {
