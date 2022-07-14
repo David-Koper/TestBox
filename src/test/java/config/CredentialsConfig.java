@@ -1,9 +1,18 @@
 package config;
 
-import com.codeborne.selenide.Config;
+import org.aeonbits.owner.Config;
 
-//@Config.Sourse("classpath:config/credentials.properties")
+
+@Config.Sources("classpath:config/credentials.properties")
 public interface CredentialsConfig extends Config {
 
 
-    String baseUrl();}
+    String baseUrl();
+
+
+    String login();
+
+
+    String password();
+
+}
