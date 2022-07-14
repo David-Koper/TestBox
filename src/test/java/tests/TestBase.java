@@ -23,12 +23,18 @@ public class TestBase {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
 
+        String browser = System.getProperty("browser", "chrome");
+        String version = System.getProperty("version", "101");
+        String browserSize = System.getProperty("browserSize", "1920x1080");
+
+
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = browserSize;
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-
-
+        Configuration.browserVersion = version;
+        Configuration.browser = browser;
     }
     @AfterEach
     void addAttachments() {
