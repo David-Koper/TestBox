@@ -29,7 +29,7 @@ public class TestBase {
         capabilities.setCapability("enableVideo", true);
 
         //Configuration.browserCapabilities = capabilities;
-        Configuration.baseUrl = config.baseUrl();
+        Configuration.baseUrl = "https://demoqa.com"; //config.baseUrl();
         Configuration.browser = System.getProperty("browser");
         Configuration.browserVersion = System.getProperty("version");
         Configuration.browserSize = System.getProperty("browserSize");
