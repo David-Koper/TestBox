@@ -9,7 +9,9 @@ repositories {
 def allureVersion = "2.18.1",
     selenideVersion = "6.6.4",
     junitVersion = "5.8.2",
+    javaFakerVersion = "1.0.2",
     slf4jVersion = "1.7.32"
+
 
 allure {
     report {
@@ -26,11 +28,11 @@ allure {
 }
 dependencies {
     testImplementation(
-            "com.github.javafaker:javafaker:1.0.2",
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion")
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "com.github.javafaker:javafaker:$javaFakerVersion")
 }
 
 tasks.withType(Test) {
