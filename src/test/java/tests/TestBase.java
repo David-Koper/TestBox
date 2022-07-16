@@ -28,7 +28,7 @@ public class TestBase {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
 
-        //Configuration.browserCapabilities = capabilities;
+        Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = config.baseUrl(); //"https://demoqa.com";
         Configuration.browser = System.getProperty("browser");
         Configuration.browserVersion = System.getProperty("version");
